@@ -49,7 +49,7 @@ Define a listing, like this:
 \end{linehighlight}
 ```
 
-Thanks to @tobyS for the initial version and idea.
+Thanks to [@tobyS](https://github.com/tobyS) for the initial version and idea.
 
 Screenshot of highlighting:
 
