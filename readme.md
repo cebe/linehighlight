@@ -15,8 +15,8 @@ source highlighting.
 
 To use this package, do the following:
 
-- Download the `linehighlight.sty` file to your LaTeX project.
-- Include the package using:
+1. Download the `linehighlight.sty` file to your LaTeX project.
+2. Include the package using:
 
 ```latex
 % allow using color 
@@ -34,7 +34,7 @@ To use this package, do the following:
 
 ```
 
-- Define some listing, like::
+Define a listing, like this:
 
 ```latex
 \begin{linehighlight}{
