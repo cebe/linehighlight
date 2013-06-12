@@ -51,4 +51,4 @@ Define a listing, like this:
 
 Screenshot of highlighting:
 
-![Screenshot of qalisting highlighted lines.](http://github.com/tobyS/qalisting/raw/master/screenshot.png)
+![Screenshot of qalisting highlighted lines.](http://github.com/cebe/linehighlight/raw/master/screenshot.png)
