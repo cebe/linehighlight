@@ -15,13 +15,27 @@ source highlighting.
 
 To use this package, do the following:
 
-1. Download the `linehighlight.sty` file to your LaTeX project.
-2. Include the package using:
+- Download the `linehighlight.sty` file to your LaTeX project.
+- Include the package using:
+
 ```latex
+% allow using color 
+\usepackage{color}
+\usepackage{xcolor}
+
+% the lstlistings package
 \usepackage{listings}
+% highlighting lines in listings
 \usepackage{linehighlight}
+
+% set colors for code background and highlighting
+\definecolor{codehighlight}{rgb}{0.95,0.8,0.8}
+\definecolor{codebackground}{rgb}{0.95,0.95,0.95}
+
 ```
-3. Define some listing, like::
+
+- Define some listing, like::
+
 ```latex
 \begin{linehighlight}{
       \only<1,3>{ % Only on slides 1 and 3 (beamer stuff)
@@ -37,5 +51,4 @@ To use this package, do the following:
 
 Screenshot of highlighting:
 
-.. image:: http://github.com/tobyS/qalisting/raw/master/screenshot.png
-   :alt:   Screenshot of qalisting highlighted lines.
+![Screenshot of qalisting highlighted lines.](http://github.com/tobyS/qalisting/raw/master/screenshot.png)
