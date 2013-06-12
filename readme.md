@@ -49,6 +49,8 @@ Define a listing, like this:
 \end{linehighlight}
 ```
 
+Thanks to @tobyS for the initial version and idea.
+
 Screenshot of highlighting:
 
 ![Screenshot of qalisting highlighted lines.](http://github.com/cebe/linehighlight/raw/master/screenshot.png)
