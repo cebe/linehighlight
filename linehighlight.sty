@@ -1,74 +1,71 @@
-% qalisting - code line highlighting for LaTeX lstlisting (in beamer)
+% linehighlight - code line highlighting for LaTeX lstlisting (in beamer)
 %
-% This little, dirty package allows you to highlight lines in a source code
-% example. It is mostly used in beamer presentations, to point to certain code
+% This package allows you to highlight lines in a source code listing.
+% It is mostly used in beamer presentations, to point to certain code
 % potions. The 2 provided commands allow you to embed a listing and to define
 % highlighted lines in a simple and clean way, without messing up your LaTeX
 % code, the source code example and especially without loosing lstlisting
 % source highlighting.
 %
-% Note, that this package is currently really hackish and does only work with
-% PHP source code, without adjustment. Use it in the current state on your own
-% risc! If you are advanced in LaTeX, pull requests / patches to clean this
-% package up and make it more flexible are highly welcome. Enjoy.
-% 
-% To use this package (at your own risk), do the following:
+% Note: this currently does not work with listings that have a caption
+%
+% To use this package, do the following:
 %
 % 1. Download the file to your LaTeX project
 % 2. Include the package using::
-%       \RequirePackage{qalisting}
+%       \usepackage{listings}
+%       \usepackage{linehighlight}
 % 3. Define some listing, like::
-%       \qalisting{code/my_code.php}{       % Include listing code/my_code.php.
+%       \begin{linehighlight}{   % Include listing code/my_code.php.
 %         \only<1,3>{                       % Only on slides 1 and 3 (beamer stuff)
-%           \qahigh{1,3,5}                  % highlight code lines 1,3 and 5.
+%           \highlightline{1,3,5}           % highlight code lines 1,3 and 5.
 %         }
 %         \only<2>{                         % Only on slide 2 (beamer)
-%           \qahigh{2-5}                    % highlight lines 2 to 5.
+%           \highlightline{2,..,8}          % highlight lines 2 to 8.
 %         }
 %
 % This program is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
 % the Free Software Foundation, either version 3 of the License, or
 % (at your option) any later version.
-% 
+%
 % This program is distributed in the hope that it will be useful,
 % but WITHOUT ANY WARRANTY; without even the implied warranty of
 % MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 % GNU General Public License for more details.
-% 
+%
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-\ProvidesPackage{mypack}
+\ProvidesPackage{linehighlight}
 
 % Required packages
-\RequirePackage{keycommand}
-\RequirePackage{lstlisting}
+\RequirePackage{listings}
 \RequirePackage{tikz}
 
 % TIKZ libraries
-\usetikzlibrary{shapes,shapes.multipart,backgrounds,calc}
+\usetikzlibrary{shapes,shapes.multipart,backgrounds,calc,fit}
 
 % Define code line highlightings (used only in \qalisting's second parameter.
 % Usage:
-%   \qahigh{1,3,4}          % Highlight line 1, 3 and 4
-%   \qahigh{3,...,10}       % Highlight lines 3 to 10
+%   \highlightline{1,3,4}          % Highlight line 1, 3 and 4
+%   \highlightline{3,...,10}       % Highlight lines 3 to 10
 % Typically used in beamer with
 %   \only<2>{               % Highlight lines 2, 4 and 5 only on slide 2
-%     \qahigh{2,4,5}
+%     \highlightline{2,4,5}
 %   }
-\newcommand{\qahigh}[1]
+\newcommand{\highline}[1]
   {%
-    \foreach \x in {#1}
-      \node[qahigh] at (0, 1 + -1 * \x) {
+    \foreach \x in {#1}%
+      \node[qahigh] at (0, 1 + -1 * \x) {%
 % Example for use of graphics for highlighting
 % uncomment and set graphics file for usage
 %        \begin{flushright}
 %        \includegraphics[height=\baselineskip]{graphics/left-arrow.pdf}
 %        \end{flushright}
-      };
-  }
-
+      };%
+  }%
+%
 % Command to define a highlightable listing
 % currently only supports PHP
 %
@@ -86,22 +83,48 @@
 %     \qahigh{2,3}                      %   highlight lines 2 and 3
 %    }                                  %
 % }
-\newkeycommand{\qalisting}[fontsize=\Normalsize][2]%
-  {\commandkey{fontsize}
-   \begin{tikzpicture}[baseline=0pt,y=\baselineskip,inner frame sep=0pt]%
-     % Customize highlighting style here
-     \tikzstyle{qahigh}=[fill=mylightgray,text width=\textwidth,%
-       minimum height=\baselineskip, inner sep=0, inner ysep=0, anchor=north west]
-     
-     \node[rectangle, anchor=north west, outer sep=0, inner sep = 0] at (0,0)
-     {%
-       \begin{minipage}{\textwidth}
-          \lstinputlisting[language=PHP,basicstyle=\commandkey{fontsize},lineskip=0pt,aboveskip=0pt,belowskip=0pt,
-            framesep=0pt,rulesep=0px,framerule=0pt]{#1}
-       \end{minipage}
-     };
-     \begin{pgfonlayer}{background}
-      #2
-     \end{pgfonlayer}
-   \end{tikzpicture}
- }
+
+
+ % \newkeycommand{\qalisting}[fontsize=\footnotesize][2]%
+ % {\commandkey{fontsize}%
+ %
+ %         \lstinputlisting[lineskip=0pt,aboveskip=0pt,belowskip=0pt,framesep=0pt,rulesep=0px,framerule=0pt]{#1}%
+ %
+ %}
+\lstset{%
+	lineskip=0pt,
+	aboveskip=0pt,
+	belowskip=0pt,
+	framesep=0pt,
+	rulesep=0px,
+	framerule=0pt
+}%
+
+\newenvironment{linehighlight}[1]{
+	% http://tex.stackexchange.com/a/17037/10327
+	\def\lineHighlightLines{#1}
+	\footnotesize
+	\begin{tikzpicture}[%
+%	   baseline=0pt,%
+		y=\baselineskip,%
+%		inner frame sep=0pt%
+	]%
+		% Customize highlighting style here
+		\tikzstyle{qahigh}=[fill=codehighlight,text width=\textwidth+3.8pt,%
+			minimum height=\baselineskip, inner sep=0,outer xsep=-3.8pt, anchor=north west%
+		];%
+%
+		\node[rectangle, anchor=north west, outer sep=0, inner ysep=0] (codenode) at (0,0)%
+		\bgroup% bgroup equals to {%
+			\begin{minipage}{\textwidth}%
+			\vspace{\baselineskip}
+}{%
+			\end{minipage}%
+		\egroup;% egroup equals to };%
+%
+		\begin{pgfonlayer}{background}%
+			\node[fill=codebackground,fit=(codenode), outer ysep=1] {};%
+			\lineHighlightLines%
+		\end{pgfonlayer}%
+	\end{tikzpicture}%
+}
