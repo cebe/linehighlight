@@ -72,3 +72,21 @@ Add a `\vspace{.05cm}` after the linehighlight environment.
     $ G_k \leftarrow G $ \\
 \end{linehighligh
 ```
+
+### Force indentation
+
+The linehighlight environment seems to remove all indentation that you may have in you algorithm or code.
+Prepending the lines with a `\hspace*{0.5cm}` can bring it back:
+
+```latex
+$ k \leftarrow 0 $ \\
+$ G_k \leftarrow G $ \\
+$ \textbf{while } |G_k| > 0 \textbf{ do} $ \\
+\hspace*{0.5cm} $ \textbf{while } \{n \in G_k : k > |deg(n)|\} \neq \emptyset \textbf{ do} $ \\
+\hspace*{1.0cm} $    G_k \leftarrow G_k \setminus \{n \in G_k : k > |deg(n)|\} $ \\
+\hspace*{0.5cm} $ \textbf{end while} $ \\
+\hspace*{0.5cm} $ G_{k+1} \leftarrow G_k $ \\
+\hspace*{0.5cm} $ k \leftarrow k + 1 $ \\
+$ \textbf{end while} $%
+```
+
