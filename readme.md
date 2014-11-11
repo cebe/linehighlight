@@ -5,13 +5,16 @@ linehighlight - code line highlighting for LaTeX lstlisting (in beamer)
 
 This package allows you to highlight lines in a source code listing.
 It is mostly used in beamer presentations, to point to certain code
-potions. The provided environment allows you to embed a listing and to define
+portions. The provided environment allows you to embed a listing and to define
 highlighted lines in a simple and clean way, without messing up your LaTeX
 code, the source code example and especially without loosing lstlisting
 source highlighting.
 
 > Note: This currently does not work with listings that have a caption.
 > Also all the paddings and spacings of lstlisting will be set to 0.
+
+Usage
+-----
 
 To use this package, do the following:
 
@@ -31,8 +34,9 @@ To use this package, do the following:
 % set colors for code background and highlighting
 \definecolor{codehighlight}{rgb}{0.95,0.8,0.8}
 \definecolor{codebackground}{rgb}{0.95,0.95,0.95}
-
 ```
+
+### Usage with listings
 
 Define a listing, like this:
 
@@ -53,10 +57,9 @@ Thanks to [@tobyS](https://github.com/tobyS) for the initial version and idea.
 
 Screenshot of highlighting:
 
-![Screenshot of qalisting highlighted lines.](http://github.com/cebe/linehighlight/raw/master/screenshot.png)
+![Screenshot of qalisting highlighted lines.](https://raw.githubusercontent.com/cebe/linehighlight/master/screenshot.png)
 
-Usage with normal text or math
-------------------------------
+### Usage with normal text or math
 
 The line highlighting also works with normal text or math and pseudo code.
 Currently only a little hack has to be applied here to make the alignment work.
@@ -73,7 +76,9 @@ Add a `\vspace{.05cm}` after the linehighlight environment.
 \end{linehighligh
 ```
 
-### Force indentation
+![Screenshot of highlighted pseudocode.](https://raw.githubusercontent.com/cebe/linehighlight/master/screenshot-pseudocode.png)
+
+#### Force indentation
 
 The linehighlight environment seems to remove all indentation that you may have in you algorithm or code.
 Prepending the lines with a `\hspace*{0.5cm}` can bring it back:
