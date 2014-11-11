@@ -54,3 +54,21 @@ Thanks to [@tobyS](https://github.com/tobyS) for the initial version and idea.
 Screenshot of highlighting:
 
 ![Screenshot of qalisting highlighted lines.](http://github.com/cebe/linehighlight/raw/master/screenshot.png)
+
+Usage with normal text or math
+------------------------------
+
+The line highlighting also works with normal text or math and pseudo code.
+Currently only a little hack has to be applied here to make the alignment work.
+Add a `\vspace{.05cm}` after the linehighlight environment.
+
+```latex
+ \begin{linehighlight}{
+       \only<2>{\highline{2}}
+       % ...
+}%
+\vspace{.05cm}
+    $ k \leftarrow 0 $ \\
+    $ G_k \leftarrow G $ \\
+\end{linehighligh
+```
