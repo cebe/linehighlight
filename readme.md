@@ -57,7 +57,7 @@ Thanks to [@tobyS](https://github.com/tobyS) for the initial version and idea.
 
 Screenshot of highlighting:
 
-![Screenshot of qalisting highlighted lines.](https://raw.githubusercontent.com/cebe/linehighlight/master/screenshot.png)
+![Screenshot of highlighted code lines.](https://raw.githubusercontent.com/cebe/linehighlight/master/screenshot.png)
 
 ### Usage with normal text or math
 
@@ -76,8 +76,6 @@ Add a `\vspace{.05cm}` after the linehighlight environment.
 \end{linehighligh
 ```
 
-![Screenshot of highlighted pseudocode.](https://raw.githubusercontent.com/cebe/linehighlight/master/screenshot-pseudocode.png)
-
 #### Force indentation
 
 The linehighlight environment seems to remove all indentation that you may have in you algorithm or code.
@@ -95,3 +93,6 @@ $ \textbf{while } |G_k| > 0 \textbf{ do} $ \\
 $ \textbf{end while} $%
 ```
 
+Screenshot of highlighting:
+
+![Screenshot of highlighted pseudocode.](https://raw.githubusercontent.com/cebe/linehighlight/master/screenshot-pseudocode.png)
